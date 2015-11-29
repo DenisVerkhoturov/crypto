@@ -8,17 +8,15 @@ import java.util.Scanner;
  */
 public class CryptoConsole
 {
+    static Application app = new Application();
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args)
     {
-        Application app = new Application();
-        Scanner scanner = new Scanner(System.in);
-
-        Cipher cipher;
-
         while(true) {
             String cipherName = scanner.nextLine();
             try {
-                cipher = app.getCipher(cipherName);
+                app.setCipher(cipherName);
                 break;
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -30,6 +28,6 @@ public class CryptoConsole
             }
         }
 
-        System.out.println(cipher.name());
+        System.out.println(app.getCurrentCipher().name());
     }
 }

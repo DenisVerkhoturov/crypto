@@ -1,22 +1,29 @@
 package app;
 
 import app.cipher.Cipher;
+import org.jetbrains.annotations.Contract;
 
 /**
  * Created by Leo.Scream on 29.11.2015.
  */
 public class Application
 {
+    private Cipher cipher;
+
     private String createCipherClassName(String cipherName)
     {
         String applicationPath = "app.cipher.";
         return applicationPath + cipherName;
     }
 
-    public Cipher getCipher(String cipherName) throws ClassNotFoundException, InstantiationException, IllegalAccessException
+    public void setCipher(String cipherName) throws ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         cipherName = createCipherClassName(capitalizeName(cipherName));
-        Cipher cipher = (Cipher) Class.forName(cipherName).newInstance();
+        cipher = (Cipher) Class.forName(cipherName).newInstance();
+    }
+
+    public Cipher getCurrentCipher()
+    {
         return cipher;
     }
 
