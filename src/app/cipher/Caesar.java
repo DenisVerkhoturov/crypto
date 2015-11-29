@@ -1,5 +1,7 @@
 package app.cipher;
 
+import app.Cipher;
+
 /**
  * Created by Leo.Scream on 29.11.2015.
  */

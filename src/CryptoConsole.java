@@ -1,5 +1,4 @@
 import app.Application;
-import app.cipher.Cipher;
 
 import java.util.Scanner;
 
@@ -13,6 +12,11 @@ public class CryptoConsole
 
     public static void main(String[] args)
     {
+        try {
+            System.out.println("Реализованные шифровальщики: " + app.getCiphersName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         while(true) {
             String cipherName = scanner.nextLine();
             try {

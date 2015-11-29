@@ -1,4 +1,4 @@
-package app.cipher;
+package app;
 
 /**
  * Created by Leo.Scream on 29.11.2015.
@@ -17,10 +17,5 @@ public abstract class Cipher
 
     public String name(){
         return this.getClass().getSimpleName();
-    }
-
-    public static String[] getCiphersName()
-    {
-        return new String[]{"caesar, vigenere"};
     }
 }
