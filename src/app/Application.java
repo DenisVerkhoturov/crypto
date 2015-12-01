@@ -6,7 +6,7 @@ package app;
  */
 public class Application
 {
-    private static CipherManager cipherManager = new CipherManager();
+    private CipherManager cipherManager = new CipherManager();
 
     public CipherManager getCipherManager()
     {

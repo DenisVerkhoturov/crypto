@@ -19,14 +19,9 @@ import java.util.jar.JarFile;
  */
 public class CipherManager
 {
-    private static String ciphersPath = "app.cipher";
+    private String ciphersPath = "app.cipher";
 
-    private static String capitalizeName(String name)
-    {
-        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-    }
-
-    private static Class<?> loadClass(String className)
+    private Class<?> loadClass(String className)
     {
         try {
             return Class.forName(className);
@@ -63,7 +58,7 @@ public class CipherManager
      * @param packName
      * @return Classes within Directory with package name
      */
-    private static List<Class<?>> processDirectory(File directory, String packName)
+    private List<Class<?>> processDirectory(File directory, String packName)
     {
 
         ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
@@ -97,7 +92,7 @@ public class CipherManager
      * @param resource
      * @param packName
      */
-    private static List<Class<?>> processJarfile(URL resource, String packName)
+    private List<Class<?>> processJarfile(URL resource, String packName)
     {
         List<Class<?>> classes = new ArrayList<Class<?>>();
 

@@ -1,5 +1,7 @@
 import app.Application;
 
+import java.util.List;
+
 /**
  * Main class for console version of cipher application.
  * Created by Leo.Scream on 29.11.2015.
@@ -10,8 +12,16 @@ public class CryptoConsole
 
     public static void main(String[] args)
     {
-        app.getCipherManager().getClassesForPackage();
+        List<Class<?>> classes = app.getCipherManager().getClassesForPackage();
 
-        System.out.println(app.getCipherManager());
+        for(Class<?> item : classes) {
+            try {
+                System.out.println(item.newInstance().getClass().getSimpleName());
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
