@@ -1,6 +1,6 @@
 package app.cipher;
 
-import app.CipherManager;
+import app.CipherAlgorithm;
 
 /**
  * Vigenere algorithm
@@ -10,7 +10,7 @@ import app.CipherManager;
  *
  * Created by Leo.Scream on 29.11.2015.
  */
-public class Vigenere extends CipherManager
+public class Vigenere extends CipherAlgorithm
 {
     public String encrypt(String input)
     {

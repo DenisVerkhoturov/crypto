@@ -1,10 +1,7 @@
 package app;
 
-import app.annotations.*;
-
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -127,43 +124,5 @@ public class CipherManager
         }
 
         return classes;
-    }
-
-    public void getCiphersName() throws Exception
-    {
-        Class cipher = Class.forName(ciphersPath + "." + "Caesar");
-
-        if (!cipher.isAnnotationPresent(CipherAlgorithm.class)) {
-            System.err.println("no annotation");
-        } else {
-            System.out.println("class annotated ; name  -  " + cipher.getAnnotation(CipherAlgorithm.class));
-        }
-
-        boolean hasEncryptMethod = false;
-        boolean hasDecryptMethod = false;
-        boolean hasHelpMethod = false;
-        boolean hasHackMethod = false;
-
-        Method[] method = cipher.getMethods();
-
-        for (Method md : method) {
-            if (md.isAnnotationPresent(Encrypt.class)) {
-                hasEncryptMethod = true;
-            }
-            if (md.isAnnotationPresent(Decrypt.class)) {
-                hasDecryptMethod = true;
-            }
-            if (md.isAnnotationPresent(Help.class)) {
-                hasHelpMethod = true;
-            }
-            if (md.isAnnotationPresent(Hack.class)) {
-                hasHackMethod = true;
-            }
-            if (hasEncryptMethod && hasDecryptMethod && hasHelpMethod && hasHackMethod) {
-                break;
-            }
-        }
-
-        System.out.println("Класс " + cipher.getSimpleName() + " итоги валидации:" + "\n\tМетод шифровки: " + hasEncryptMethod + "\n\tМетод дешифровки: " + hasDecryptMethod + "\n\tМетод помощи пользователю: " + hasHelpMethod + "\n\tМетод взлома: " + hasHackMethod);
     }
 }

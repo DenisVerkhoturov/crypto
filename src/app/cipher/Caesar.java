@@ -1,6 +1,6 @@
 package app.cipher;
 
-import app.annotations.*;
+import app.CipherAlgorithm;
 
 /**
  * Caesar algorithm.
@@ -10,31 +10,26 @@ import app.annotations.*;
  *
  * Created by Leo.Scream on 29.11.2015.
  */
-@CipherAlgorithm(algorithmName = "Caesar algorithm")
-public class Caesar
+public class Caesar extends CipherAlgorithm
 {
-    @Encrypt
     public String encrypt(String input)
     {
         String output = "";
         return output;
     }
 
-    @Decrypt
     public String decrypt(String input)
     {
         String output = "";
         return output;
     }
 
-    @Help
     public String help()
     {
         String output = "";
         return output;
     }
 
-    @Hack
     public String hack(String input)
     {
         String output = "";
