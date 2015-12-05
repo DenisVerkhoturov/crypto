@@ -2,6 +2,9 @@ package app.cipher;
 
 import app.CipherAlgorithm;
 
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 /**
  * Шифр Атбаш
  *
@@ -14,19 +17,19 @@ import app.CipherAlgorithm;
 public class Atbash extends CipherAlgorithm
 {
     @Override
-    public String encrypt(String input)
+    public OutputStreamWriter encrypt(InputStreamReader input)
     {
         return null;
     }
 
     @Override
-    public String decrypt(String input)
+    public OutputStreamWriter decrypt(InputStreamReader input)
     {
         return null;
     }
 
     @Override
-    public String hack(String input)
+    public OutputStreamWriter hack(InputStreamReader input)
     {
         return null;
     }

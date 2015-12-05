@@ -1,5 +1,8 @@
 package app;
 
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 /**
  * Абстрактный класс шифровальщик, с наследниками которого работает внешняя среда.
  */
@@ -9,11 +12,11 @@ public abstract class CipherAlgorithm
         return this.getClass().getSimpleName();
     }
 
-    public abstract String encrypt(String input);
+    public abstract OutputStreamWriter encrypt(InputStreamReader input);
 
-    public abstract String decrypt(String input);
+    public abstract OutputStreamWriter decrypt(InputStreamReader input);
 
-    public abstract String hack(String input);
+    public abstract OutputStreamWriter hack(InputStreamReader input);
 
     public abstract String help();
 

@@ -15,7 +15,7 @@ public class CryptoConsole
         List<CipherAlgorithm> classes = app.getCipherManager().getCiphersList();
 
         for(CipherAlgorithm item : classes) {
-            System.out.println(item.getClass().getSimpleName());
+            System.out.println(item.name());
         }
     }
 }
