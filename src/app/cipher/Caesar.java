@@ -27,9 +27,9 @@ public class Caesar extends CipherAlgorithm
             while ((charCode = reader.read()) != -1) {
                 String letter = String.valueOf((char) charCode);
                 boolean isNotInAlphabet = true;
-                for (int i = 0; i < currentLanguage.alphabeth.length; i++) {
-                    if (letter.toLowerCase().equals(currentLanguage.alphabeth[i])) {
-                        writer.write(currentLanguage.alphabeth[i + key < currentLanguage.alphabeth.length ? i + key : (i + key) % currentLanguage.alphabeth.length]);
+                for (int i = 0; i < currentLanguage.alphabet.length; i++) {
+                    if (letter.toLowerCase().equals(currentLanguage.alphabet[i])) {
+                        writer.write(currentLanguage.alphabet[i + key < currentLanguage.alphabet.length ? i + key : (i + key) % currentLanguage.alphabet.length]);
                         isNotInAlphabet = false;
                     }
                 }

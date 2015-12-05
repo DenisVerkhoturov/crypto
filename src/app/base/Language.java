@@ -5,5 +5,9 @@ package app.base;
  */
 public abstract class Language
 {
-    public String[] alphabeth;
+    public String[] alphabet;
+
+    public String name(){
+        return this.getClass().getSimpleName();
+    }
 }
