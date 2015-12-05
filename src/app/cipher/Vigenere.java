@@ -3,36 +3,33 @@ package app.cipher;
 import app.CipherAlgorithm;
 
 /**
- * Vigenere algorithm
+ * Шифр Вижинера
  *
- * Encrypt alphabetic text by using a series of different Caesar ciphers based on the letters of a keyword.
- * It is a simple form of poly-alphabetic substitution.
- *
- * Created by Leo.Scream on 29.11.2015.
+ * Метод полиалфавитного шифрования буквенного текста с использованием ключевого слова.
  */
 public class Vigenere extends CipherAlgorithm
 {
+    @Override
     public String encrypt(String input)
     {
-        String output = "";
-        return output;
+        return null;
     }
 
+    @Override
     public String decrypt(String input)
     {
-        String output = "";
-        return output;
+        return null;
     }
 
-    public String help()
-    {
-        String output = "";
-        return output;
-    }
-
+    @Override
     public String hack(String input)
     {
-        String output = "";
-        return output;
+        return null;
+    }
+
+    @Override
+    public String help()
+    {
+        return null;
     }
 }

@@ -1,7 +1,7 @@
 package app;
 
 /**
- * Created by Leo.Scream on 03.12.2015.
+ * Абстрактный класс шифровальщик, с наследниками которого работает внешняя среда.
  */
 public abstract class CipherAlgorithm
 {

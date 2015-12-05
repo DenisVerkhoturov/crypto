@@ -1,10 +1,10 @@
 import app.Application;
+import app.CipherAlgorithm;
 
 import java.util.List;
 
 /**
- * Main class for console version of cipher application.
- * Created by Leo.Scream on 29.11.2015.
+ * Консольная версия приложения.
  */
 public class CryptoConsole
 {
@@ -12,16 +12,10 @@ public class CryptoConsole
 
     public static void main(String[] args)
     {
-        List<Class<?>> classes = app.getCipherManager().getClassesForPackage();
+        List<CipherAlgorithm> classes = app.getCipherManager().getCiphersList();
 
-        for(Class<?> item : classes) {
-            try {
-                System.out.println(item.newInstance().getClass().getSimpleName());
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+        for(CipherAlgorithm item : classes) {
+            System.out.println(item.getClass().getSimpleName());
         }
     }
 }

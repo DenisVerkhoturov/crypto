@@ -1,8 +1,7 @@
 package app;
 
 /**
- * Application universal class for implementing any version of user interface.
- * Created by Leo.Scream on 29.11.2015.
+ * Универсальный класс приложения, предоставляющий универсальные медоты шифрования по имени алгоритма.
  */
 public class Application
 {

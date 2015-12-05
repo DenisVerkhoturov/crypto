@@ -10,9 +10,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * Class for managing cipher classes.
- *
- * Created by Leo.Scream on 29.11.2015.
+ * Класс управляющий алгоритмами шифрования.
  */
 public class CipherManager
 {
@@ -29,36 +27,38 @@ public class CipherManager
     }
 
     /**
-     * Give a package this method returns all classes contained in that package
+     * Сканирует пакет на наличие в нем классов, расширяющих CipherAlgorithm.
      */
-    public List<Class<?>> getClassesForPackage()
+    public List<CipherAlgorithm> getCiphersList()
     {
-        ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
+        ArrayList<CipherAlgorithm> classes = new ArrayList<CipherAlgorithm>();
         String relPath = ciphersPath.replace('.', '/');
         URL resource = ClassLoader.getSystemClassLoader().getResource(relPath);
 
         if (resource == null)
             throw new RuntimeException("Unexpected problem: No resource for " + relPath);
+/*
 
         if (resource.toString().startsWith("jar:"))
-            classes.addAll(processJarfile(resource, ciphersPath));
+            classes.addAll(processJarfile(resource, ciphersPath)); // TODO приведение CipherAlgorithm
+
         else
-            classes.addAll(processDirectory(new File(resource.getPath()), ciphersPath));
+            classes.addAll(processDirectory(new File(resource.getPath()), ciphersPath)); // TODO приведение CipherAlgorithm
+*/
 
         return classes;
     }
 
     /**
-     * Given a package name and a directory returns all classes within that directory
+     * Ищет классы в директории в файловой системе.
      *
-     * @param directory
-     * @param packName
-     * @return Classes within Directory with package name
+     * @param directory - директория в файловой системе, в которой осуществляем поиск
+     * @return Возвращает лист классов
      */
-    private List<Class<?>> processDirectory(File directory, String packName)
+    private List<CipherAlgorithm> processDirectory(File directory)
     {
 
-        ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
+        ArrayList<CipherAlgorithm> classes = new ArrayList<CipherAlgorithm>();
 
         String[] files = directory.list();
 
@@ -66,17 +66,17 @@ public class CipherManager
             String className = null;
 
             if (fileName.endsWith(".class")) {
-                className = packName + '.' + fileName.substring(0, fileName.length() - 6);
+                className = ciphersPath + '.' + fileName.substring(0, fileName.length() - 6);
             }
 
             if (className != null) {
-                classes.add(loadClass(className));
+                //classes.add(loadClass(className)); // TODO приведение CipherAlgorithm
             }
 
             File subdir = new File(directory, fileName);
 
             if (subdir.isDirectory()) {
-                classes.addAll(processDirectory(subdir, packName + '.' + fileName));
+                //classes.addAll(processDirectory(subdir, ciphersPath + '.' + fileName)); // TODO приведение CipherAlgorithm
             }
         }
 
@@ -84,16 +84,15 @@ public class CipherManager
     }
 
     /**
-     * Given a jar file's URL and a package name returns all classes within jar file.
+     * Ищет классы в jar-архиве.
      *
-     * @param resource
-     * @param packName
+     * @param resource - URL ресурса
      */
-    private List<Class<?>> processJarfile(URL resource, String packName)
+    private List<CipherAlgorithm> processJarfile(URL resource)
     {
-        List<Class<?>> classes = new ArrayList<Class<?>>();
+        List<CipherAlgorithm> classes = new ArrayList<CipherAlgorithm>();
 
-        String relPath = packName.replace('.', '/');
+        String relPath = ciphersPath.replace('.', '/');
         String resPath = resource.getPath();
         String jarPath = resPath.replaceFirst("[.]jar[!].*", ".jar").replaceFirst("file:", "");
 
@@ -113,13 +112,19 @@ public class CipherManager
             String entryName = entry.getName();
             String className = null;
 
-            if (entryName.endsWith(".class") && entryName.startsWith(relPath)
+            if (entryName.endsWith(".class")
+                    && entryName.startsWith(relPath)
                     && entryName.length() > (relPath.length() + "/".length())) {
                 className = entryName.replace('/', '.').replace('\\', '.').replace(".class", "");
             }
 
             if (className != null) {
-                classes.add(loadClass(className));
+
+                Class candidate = loadClass(className);
+
+                if (candidate.getGenericSuperclass() == CipherAlgorithm.class) {
+                    //classes.add((CipherAlgorithm) candidate); // TODO приведение CipherAlgorithm
+                }
             }
         }
 

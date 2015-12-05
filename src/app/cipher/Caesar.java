@@ -3,36 +3,36 @@ package app.cipher;
 import app.CipherAlgorithm;
 
 /**
- * Caesar algorithm.
+ * Шифр Цезаря
  *
- * Encrypt alphabetic text by replacing each letter in the plaintext by
- * a letter some fixed number of positions down the alphabet.
- *
- * Created by Leo.Scream on 29.11.2015.
+ * Шифр Цезаря — это вид шифра подстановки,
+ * в котором каждый символ в открытом тексте заменяется символом,
+ * находящимся на некотором постоянном числе позиций левее или правее него в алфавите.
+ * Например, в шифре со сдвигом вправо на 3, А была бы заменена на Г, Б станет Д, и так далее.
  */
 public class Caesar extends CipherAlgorithm
 {
+    @Override
     public String encrypt(String input)
     {
-        String output = "";
-        return output;
+        return null;
     }
 
+    @Override
     public String decrypt(String input)
     {
-        String output = "";
-        return output;
+        return null;
     }
 
-    public String help()
-    {
-        String output = "";
-        return output;
-    }
-
+    @Override
     public String hack(String input)
     {
-        String output = "";
-        return output;
+        return null;
+    }
+
+    @Override
+    public String help()
+    {
+        return null;
     }
 }
