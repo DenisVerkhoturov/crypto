@@ -1,9 +1,9 @@
 package app.cipher;
 
-import app.CipherAlgorithm;
+import app.base.CipherAlgorithm;
 
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 
 /**
  * Шифр Вижинера
@@ -13,21 +13,21 @@ import java.io.OutputStreamWriter;
 public class Vigenere extends CipherAlgorithm
 {
     @Override
-    public OutputStreamWriter encrypt(InputStreamReader input)
+    public void encrypt(BufferedReader reader, BufferedWriter writer)
     {
-        return null;
+
     }
 
     @Override
-    public OutputStreamWriter decrypt(InputStreamReader input)
+    public void decrypt(BufferedReader reader, BufferedWriter writer)
     {
-        return null;
+
     }
 
     @Override
-    public OutputStreamWriter hack(InputStreamReader input)
+    public void hack(BufferedReader reader, BufferedWriter writer)
     {
-        return null;
+
     }
 
     @Override

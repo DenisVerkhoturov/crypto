@@ -1,4 +1,6 @@
-package app;
+package app.manager;
+
+import app.base.CipherAlgorithm;
 
 import java.io.File;
 import java.io.IOException;

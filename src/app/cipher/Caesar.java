@@ -1,10 +1,10 @@
 package app.cipher;
 
-import app.CipherAlgorithm;
+import app.base.CipherAlgorithm;
 
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * Шифр Цезаря
@@ -16,22 +16,44 @@ import java.io.OutputStreamWriter;
  */
 public class Caesar extends CipherAlgorithm
 {
+    private int key;
+
     @Override
-    public OutputStreamWriter encrypt(InputStreamReader input)
+    public void encrypt(BufferedReader reader, BufferedWriter writer)
     {
-        return null;
+        int charCode;
+
+        try {
+            while ((charCode = reader.read()) != -1) {
+                String letter = String.valueOf((char) charCode);
+                boolean isNotInAlphabet = true;
+                for (int i = 0; i < currentLanguage.alphabeth.length; i++) {
+                    if (letter.toLowerCase().equals(currentLanguage.alphabeth[i])) {
+                        writer.write(currentLanguage.alphabeth[i + key < currentLanguage.alphabeth.length ? i + key : (i + key) % currentLanguage.alphabeth.length]);
+                        isNotInAlphabet = false;
+                    }
+                }
+
+                if (isNotInAlphabet) {
+                    writer.write(letter);
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public OutputStreamWriter decrypt(InputStreamReader input)
+    public void decrypt(BufferedReader reader, BufferedWriter writer)
     {
-        return null;
+
     }
 
     @Override
-    public OutputStreamWriter hack(InputStreamReader input)
+    public void hack(BufferedReader reader, BufferedWriter writer)
     {
-        return null;
+
     }
 
     @Override

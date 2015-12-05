@@ -1,5 +1,5 @@
 import app.Application;
-import app.CipherAlgorithm;
+import app.base.CipherAlgorithm;
 
 import java.util.List;
 
