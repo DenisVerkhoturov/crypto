@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
  */
 public abstract class Cipher
 {
-    protected Language currentLanguage;
+    public Language currentLanguage;
 
     public String name(){
         return this.getClass().getSimpleName();

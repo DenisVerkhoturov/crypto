@@ -27,7 +27,7 @@ public class Caesar extends Cipher
             while ((charCode = reader.read()) != -1) {
                 String letter = String.valueOf((char) charCode);
                 boolean isNotInAlphabet = true;
-                for (int i = 0; i < currentLanguage.alphabet.length; i++) {
+                for (int i = 0; i < this.currentLanguage.alphabet.length; i++) {
                     if (letter.toLowerCase().equals(currentLanguage.alphabet[i])) {
                         writer.write(currentLanguage.alphabet[i + key < currentLanguage.alphabet.length ? i + key : (i + key) % currentLanguage.alphabet.length]);
                         isNotInAlphabet = false;
@@ -38,6 +38,7 @@ public class Caesar extends Cipher
                     writer.write(letter);
                 }
             }
+            writer.flush();
         }
         catch (IOException e) {
             e.printStackTrace();

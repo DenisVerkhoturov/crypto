@@ -5,7 +5,12 @@ package app.base;
  */
 public abstract class Language
 {
-    public String[] alphabet;
+    public final String[] alphabet;
+
+    protected Language(String[] alphabet)
+    {
+        this.alphabet = alphabet;
+    }
 
     public String name(){
         return this.getClass().getSimpleName();

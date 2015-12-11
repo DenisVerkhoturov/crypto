@@ -29,11 +29,11 @@ public class CryptoWindow extends JFrame
 
         content.setLayout(new FlowLayout());
 
-        JComboBox ciphers = new JComboBox(app.getCipherManager().getResourceList().toArray());
+        JComboBox ciphers = new JComboBox(app.cipherManager().getResourceList().toArray());
         ciphers.setEditable(true);
         ciphers.setAlignmentX(LEFT_ALIGNMENT);
 
-        final JLabel testCipherLabel = new JLabel("Не выбран");
+        final JLabel testCipherLabel = new JLabel(app.cipherManager().getCurrent().getClass().getSimpleName());
 
         /**
          * Слушатель для списка шифровальщиков
@@ -42,24 +42,24 @@ public class CryptoWindow extends JFrame
             public void actionPerformed(ActionEvent e) {
                 JComboBox box = (JComboBox)e.getSource();
                 String item = (String)box.getSelectedItem();
-                app.getCipherManager().setCurrent(item);
+                app.cipherManager().setCurrent(item);
                 testCipherLabel.setText(item);
             }
         };
 
-        JComboBox languages = new JComboBox(app.getLanguageManager().getResourceList().toArray());
+        JComboBox languages = new JComboBox(app.languageManager().getResourceList().toArray());
         languages.setEditable(true);
         languages.setAlignmentX(LEFT_ALIGNMENT);
 
         final JLabel testLanguageLabel = new JLabel("Не выбран");
         /**
-         * Слушатель для списка шифровальщиков
+         * Слушатель для списка языков
          */
         ActionListener setLanguage = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JComboBox box = (JComboBox)e.getSource();
                 String item = (String)box.getSelectedItem();
-                app.getLanguageManager().setCurrent(item);
+                app.languageManager().setCurrent(item);
                 testLanguageLabel.setText(item);
             }
         };
