@@ -13,7 +13,9 @@ public class LanguageManager extends PackageManager
 
     public LanguageManager()
     {
+        super();
         this.workingPath = "language";
+        this.type = Language.class;
     }
 
     public Language getCurrent() throws NullPointerException

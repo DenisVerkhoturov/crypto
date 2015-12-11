@@ -13,7 +13,9 @@ public class CipherManager extends PackageManager
 
     public CipherManager()
     {
+        super();
         this.workingPath = "cipher";
+        this.type = Cipher.class;
     }
 
     public Cipher getCurrent() throws NullPointerException

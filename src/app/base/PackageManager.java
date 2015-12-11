@@ -16,7 +16,10 @@ public abstract class PackageManager
 {
     protected String workingPath;
 
-    public PackageManager(){}
+    protected Class type;
+
+    public PackageManager()
+    {}
 
     public PackageManager(String packageName)
     {
@@ -36,14 +39,14 @@ public abstract class PackageManager
     /**
      * Сканирует пакет на наличие в нем классов.
      */
-    public List<Class <?>> getResourceList()
+    public List<String> getResourceList()
     {
-        ArrayList<Class <?>> classes = new ArrayList<Class <?>>();
-        String relPath = this.workingPath.replace('.', '/');
-        URL resource = ClassLoader.getSystemClassLoader().getResource(relPath);
+        ArrayList<String> classes = new ArrayList<String>();
+        String relativePath = this.workingPath.replace('.', '/');
+        URL resource = ClassLoader.getSystemClassLoader().getResource(relativePath);
 
         if (resource == null)
-            throw new RuntimeException("Unexpected problem: No resource for " + relPath);
+            throw new RuntimeException("Unexpected problem: No resource for " + relativePath);
 
         if (resource.toString().startsWith("jar:"))
             classes.addAll(processJarfile(resource));
@@ -60,10 +63,10 @@ public abstract class PackageManager
      * @param directory - директория в файловой системе, в которой осуществляем поиск
      * @return Возвращает лист классов
      */
-    private List<Class <?>> processDirectory(File directory)
+    private List<String> processDirectory(File directory)
     {
 
-        ArrayList<Class <?>> classes = new ArrayList<Class <?>>();
+        ArrayList<String> classes = new ArrayList<String>();
 
         String[] files = directory.list();
 
@@ -73,8 +76,13 @@ public abstract class PackageManager
             if (fileName.endsWith(".class"))
                 className = this.workingPath + '.' + fileName.substring(0, fileName.length() - 6);
 
-            if (className != null)
-                classes.add(loadClass(className));
+            if (className != null) {
+
+                Class candidate = loadClass(className);
+
+                if (candidate.getGenericSuperclass() == type)
+                    classes.add(candidate.getSimpleName());
+            }
 
             File subdirectory = new File(directory, fileName);
 
@@ -90,9 +98,9 @@ public abstract class PackageManager
      *
      * @param resource - URL ресурса
      */
-    private List<Class <?>> processJarfile(URL resource)
+    private List<String> processJarfile(URL resource)
     {
-        List<Class <?>> classes = new ArrayList<Class <?>>();
+        List<String> classes = new ArrayList<String>();
 
         String relPath = this.workingPath.replace('.', '/');
         String resPath = resource.getPath();
@@ -123,8 +131,8 @@ public abstract class PackageManager
 
                 Class candidate = loadClass(className);
 
-                if (candidate.getGenericSuperclass() == Cipher.class)
-                    classes.add(candidate);
+                if (candidate.getGenericSuperclass() == type)
+                    classes.add(candidate.getSimpleName());
             }
         }
 

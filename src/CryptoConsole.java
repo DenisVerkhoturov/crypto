@@ -23,9 +23,9 @@ public class CryptoConsole
 
         {
             System.out.println("Запрашиваю все существующие языки");
-            List<Class <?>> languages = app.getLanguageManager().getResourceList();
+            List<String> languages = app.getLanguageManager().getResourceList();
 
-            for(Class <?> language : languages)
+            for(String language : languages)
                 System.out.println(language);
 
             System.out.println("Можно использовать любой из этих языков");
@@ -43,9 +43,9 @@ public class CryptoConsole
 
         {
             System.out.println("Запрашиваю все существующие шифровальщики");
-            List<Class <?>> ciphers = app.getCipherManager().getResourceList();
+            List<String> ciphers = app.getCipherManager().getResourceList();
 
-            for(Class <?> cipher : ciphers)
+            for(String cipher : ciphers)
                 System.out.println(cipher);
 
             System.out.println("Можно использовать любой из этих шифровальщиков");
