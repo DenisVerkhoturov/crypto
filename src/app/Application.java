@@ -16,7 +16,7 @@ public class Application
         return cipherManager;
     }
 
-    public LanguageManager getlanguageManager()
+    public LanguageManager getLanguageManager()
     {
         return languageManager;
     }

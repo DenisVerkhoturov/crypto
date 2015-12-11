@@ -1,57 +1,41 @@
 package app.manager;
 
+import app.base.Helper;
 import app.base.Language;
-import app.language.Russian;
+import app.base.PackageManager;
 
 /**
  * Класс управляющий языками.
  */
-public class LanguageManager
+public class LanguageManager extends PackageManager
 {
-    private String languagePath = "app.language";
-
-    private Language currentLanguage;
+    private Language current;
 
     public LanguageManager()
     {
-        this.currentLanguage = new Russian();
+        this.workingPath = "language";
     }
 
-    public Language getCurrentLanguage()
+    public Language getCurrent() throws NullPointerException
     {
-        return this.currentLanguage;
+        return this.current;
     }
 
-    public boolean setCurrentLanguage(String language)
+    public boolean setCurrent(String language)
     {
-        if (this.validateLanguage(language)) {
-            try {
-                this.currentLanguage = (Language) Class.forName(languagePath + "." + language).newInstance();
-                return true;
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+        try {
+            this.current = (Language) Class.forName(this.workingPath + "." + Helper.capitalize(language)).newInstance();
+            return true;
+        } catch (ClassNotFoundException e) {
+            System.out.println("Такого класса не существует: " + e);
+        } catch (InstantiationException e) {
+            System.out.println("Не возможно создать экземпляр этого класса: " + e);
+        } catch (IllegalAccessException e) {
+            System.out.println("Модификатор доступа не позволяет создать экземпляр класса: " + e);
+        } catch (Exception e) {
+            System.out.println("Неизвестная ошибка: " + e);
         }
 
         return false;
-    }
-
-    /**
-     * Проверяет существование класса соответствующего переданному строковому обозначению языка.
-     * @param language - строковое обозначение языка (например, Russian)
-     * @return - возвращает true если класс найден и false если класс не удалось найти.
-     */
-    private boolean validateLanguage(String language)
-    {
-        try {
-            Class.forName(languagePath + "." + language);
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
     }
 }

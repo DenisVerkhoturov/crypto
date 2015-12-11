@@ -7,7 +7,7 @@ import java.io.BufferedWriter;
 /**
  * Абстрактный класс шифровальщик, с наследниками которого работает внешняя среда.
  */
-public abstract class CipherAlgorithm
+public abstract class Cipher
 {
     protected Language currentLanguage;
 

@@ -1,5 +1,4 @@
 import app.Application;
-import app.base.CipherAlgorithm;
 
 import java.util.List;
 
@@ -12,20 +11,44 @@ public class CryptoConsole
 
     public static void main(String[] args)
     {
-        List<CipherAlgorithm> classes = app.getCipherManager().getCiphersList();
+        {
+            if (app.getLanguageManager().setCurrent("Russian")) {
+                System.out.println("Попытка установить новый язык прошла успешно");
+            } else {
+                System.out.println("Безуспешная попытка установить язык");
+            }
 
-        for (CipherAlgorithm item : classes) {
-            System.out.println(item.name());
+            System.out.println("Используется язык " + app.getLanguageManager().getCurrent().name());
         }
 
-        System.out.println("Используется язык " + app.getlanguageManager().getCurrentLanguage().name());
+        {
+            System.out.println("Запрашиваю все существующие языки");
+            List<Class <?>> languages = app.getLanguageManager().getResourceList();
 
-        if (app.getlanguageManager().setCurrentLanguage("English")) {
-            System.out.println("Попытка установить новый язык прошла успешно");
-        } else {
-            System.out.println("Безуспешная попытка установить язык");
+            for(Class <?> language : languages)
+                System.out.println(language);
+
+            System.out.println("Можно использовать любой из этих языков");
         }
 
-        System.out.println("Используется язык " + app.getlanguageManager().getCurrentLanguage().name());
+        {
+            if (app.getCipherManager().setCurrent("Caesar")) {
+                System.out.println("Попытка установить новый шифровальщик прошла успешно");
+            } else {
+                System.out.println("Безуспешная попытка установить шифровальщик");
+            }
+
+            System.out.println("Используется шифровальщик " + app.getCipherManager().getCurrent().name());
+        }
+
+        {
+            System.out.println("Запрашиваю все существующие шифровальщики");
+            List<Class <?>> ciphers = app.getCipherManager().getResourceList();
+
+            for(Class <?> cipher : ciphers)
+                System.out.println(cipher);
+
+            System.out.println("Можно использовать любой из этих шифровальщиков");
+        }
     }
 }

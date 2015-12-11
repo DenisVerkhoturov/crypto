@@ -1,6 +1,6 @@
-package app.cipher;
+package cipher;
 
-import app.base.CipherAlgorithm;
+import app.base.Cipher;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,7 +14,7 @@ import java.io.BufferedWriter;
  * Исходный текст:      abcdefghijklmnopqrstuvwxyz
  * Зашифрованный текст: ZYXWVUTSRQPONMLKJIHGFEDCBA
  */
-public class Atbash extends CipherAlgorithm
+public class Atbash extends Cipher
 {
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)

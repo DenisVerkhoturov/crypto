@@ -1,6 +1,6 @@
-package app.cipher;
+package cipher;
 
-import app.base.CipherAlgorithm;
+import app.base.Cipher;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +10,7 @@ import java.io.BufferedWriter;
  *
  * Метод полиалфавитного шифрования буквенного текста с использованием ключевого слова.
  */
-public class Vigenere extends CipherAlgorithm
+public class Vigenere extends Cipher
 {
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)
