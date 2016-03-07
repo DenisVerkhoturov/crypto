@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
 /**
  * Универсальный класс приложения, предоставляющий универсальные медоты шифрования по имени алгоритма.
  */
-public class Application
+public class Manager
 {
     private CipherManager cipherManager = new CipherManager();
     private LanguageManager languageManager = new LanguageManager();

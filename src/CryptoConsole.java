@@ -1,4 +1,4 @@
-import app.Application;
+import app.Manager;
 
 import java.io.*;
 
@@ -7,7 +7,7 @@ import java.io.*;
  */
 public class CryptoConsole
 {
-    static Application app = new Application();
+    static Manager app = new Manager();
 
     public static void main(String[] args) throws IOException
     {
