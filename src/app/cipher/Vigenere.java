@@ -1,4 +1,4 @@
-package cipher;
+package app.cipher;
 
 import app.base.Cipher;
 
@@ -6,9 +6,11 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
 /**
- * Created by Leo.Scream on 13.12.2015.
+ * Шифр Вижинера
+ *
+ * Метод полиалфавитного шифрования буквенного текста с использованием ключевого слова.
  */
-public class SomeCipher extends Cipher
+public class Vigenere extends Cipher
 {
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)

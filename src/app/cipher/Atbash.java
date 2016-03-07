@@ -1,4 +1,4 @@
-package cipher;
+package app.cipher;
 
 import app.base.Cipher;
 
