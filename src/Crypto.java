@@ -4,6 +4,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  * @author Verhoturov Denis - Leo.Scream.
  */
@@ -22,6 +25,7 @@ public class Crypto extends Application
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Crypto.class.getResource("fxml/main.fxml"));
+        loader.setResources(ResourceBundle.getBundle("bundles.Locale", new Locale("en")));
         this.rootLayout = loader.load();
 
         Scene scene = new Scene(this.rootLayout);

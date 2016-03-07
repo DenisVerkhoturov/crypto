@@ -629,19 +629,12 @@
 /**
  * Custom styles
  */
-.title {
-    -fx-padding: 5;
-}
 
-.language-button {
+.button {
     -fx-padding: 5;
     -fx-border-radius: 15;
 }
 
-.form-item {
+.text-area {
     -fx-padding: 5;
-}
-
-.save-button {
-    -fx-padding: 10px;
 }
