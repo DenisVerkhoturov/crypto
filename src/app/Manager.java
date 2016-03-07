@@ -1,7 +1,7 @@
 package app;
 
+import app.base.Language;
 import app.manager.CipherManager;
-import app.manager.LanguageManager;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,22 +12,27 @@ import java.io.BufferedWriter;
 public class Manager
 {
     private CipherManager cipherManager = new CipherManager();
-    private LanguageManager languageManager = new LanguageManager();
+    private Language language;
+
+    public Manager()
+    {
+        this.language = Language.EN;
+    }
 
     public CipherManager cipherManager()
     {
         return cipherManager;
     }
 
-    public LanguageManager languageManager()
+    public Language getLanguage()
     {
-        return languageManager;
+        return this.language;
     }
 
     public void encrypt(BufferedReader reader, BufferedWriter writer)
     {
         if (validate()) {
-            cipherManager.getCurrent().currentLanguage = languageManager.getCurrent();
+            cipherManager.getCurrent().currentLanguage = this.language;
             cipherManager.getCurrent().encrypt(reader, writer);
         }
     }
@@ -36,10 +41,6 @@ public class Manager
     {
         if (cipherManager.getCurrent() == null) {
             System.out.println("Не установлен способ шифрования");
-            return false;
-        }
-        if (languageManager.getCurrent() == null) {
-            System.out.println("Не установлен язык текста");
             return false;
         }
 

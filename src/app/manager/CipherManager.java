@@ -14,7 +14,7 @@ public class CipherManager extends PackageManager
     public CipherManager()
     {
         super();
-        this.workingPath = "cipher";
+        this.workingPath = "app.cipher";
         this.type = Cipher.class;
     }
 

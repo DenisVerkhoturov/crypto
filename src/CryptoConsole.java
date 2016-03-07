@@ -11,7 +11,6 @@ public class CryptoConsole
 
     public static void main(String[] args) throws IOException
     {
-        app.languageManager().setCurrent("russian");
         app.cipherManager().setCurrent("caesar");
 
         String originalText = "Какой-то входной текст.";
