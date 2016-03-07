@@ -33,7 +33,7 @@ public class CryptoWindow extends JFrame
         ciphers.setEditable(true);
         ciphers.setAlignmentX(LEFT_ALIGNMENT);
 
-        final JLabel testCipherLabel = new JLabel(app.cipherManager().getCurrent().getClass().getSimpleName());
+        final JLabel testCipherLabel = new JLabel("Не выбран");
 
         /**
          * Слушатель для списка шифровальщиков
@@ -52,6 +52,7 @@ public class CryptoWindow extends JFrame
         languages.setAlignmentX(LEFT_ALIGNMENT);
 
         final JLabel testLanguageLabel = new JLabel("Не выбран");
+
         /**
          * Слушатель для списка языков
          */
@@ -75,6 +76,17 @@ public class CryptoWindow extends JFrame
 
     public static void main(String[] args) throws InterruptedException
     {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new CryptoWindow();

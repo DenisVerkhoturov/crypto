@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class Caesar extends Cipher
 {
-    private int key;
+    protected Integer key;
 
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)

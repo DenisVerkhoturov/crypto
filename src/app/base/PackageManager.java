@@ -12,7 +12,7 @@ import java.util.jar.JarFile;
 /**
  * Абстрактный класс Manager, предоставляющий интерфейс работы содержимим пакетов.
  */
-public abstract class PackageManager
+    public abstract class PackageManager
 {
     protected String workingPath;
 
