@@ -14,25 +14,13 @@ public class Vigenere extends Cipher
 {
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)
-    {
-
-    }
+    {}
 
     @Override
     public void decrypt(BufferedReader reader, BufferedWriter writer)
-    {
-
-    }
+    {}
 
     @Override
     public void hack(BufferedReader reader, BufferedWriter writer)
-    {
-
-    }
-
-    @Override
-    public String help()
-    {
-        return null;
-    }
+    {}
 }

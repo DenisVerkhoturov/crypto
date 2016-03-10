@@ -12,17 +12,11 @@ public abstract class Cipher
     public char[] alphabet;
     public String key;
 
-    public String name(){
-        return this.getClass().getSimpleName();
-    }
-
     public abstract void encrypt(BufferedReader reader, BufferedWriter writer);
 
     public abstract void decrypt(BufferedReader reader, BufferedWriter writer);
 
     public abstract void hack(BufferedReader reader, BufferedWriter writer);
-
-    public abstract String help();
 }
 
 

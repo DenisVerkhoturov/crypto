@@ -45,19 +45,9 @@ public class Caesar extends Cipher
 
     @Override
     public void decrypt(BufferedReader reader, BufferedWriter writer)
-    {
-
-    }
+    {}
 
     @Override
     public void hack(BufferedReader reader, BufferedWriter writer)
-    {
-
-    }
-
-    @Override
-    public String help()
-    {
-        return null;
-    }
+    {}
 }
