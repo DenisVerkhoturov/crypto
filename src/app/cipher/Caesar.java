@@ -16,8 +16,6 @@ import java.io.IOException;
  */
 public class Caesar extends Cipher
 {
-    protected Integer key;
-
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)
     {
@@ -25,18 +23,18 @@ public class Caesar extends Cipher
 
         try {
             while ((charCode = reader.read()) != -1) {
-                String letter = String.valueOf((char) charCode);
                 boolean isNotInAlphabet = true;
-                for (int i = 0; i < this.currentLanguage.alphabet().length; i++) {
-                    if (letter.toLowerCase().equals(currentLanguage.alphabet()[i])) {
-                        writer.write(currentLanguage.alphabet()[i + key < currentLanguage.alphabet().length ? i + key : (i + key) % currentLanguage.alphabet().length]);
+                for (int i = 0; i < this.alphabet.length; i++) {
+                    if ((char) charCode == this.alphabet[i]) {
+                        writer.write(this.alphabet[i + Integer.parseInt(key) < this.alphabet.length ? i + Integer.parseInt(key) : (i + Integer.parseInt(key)) % this.alphabet.length]);
                         isNotInAlphabet = false;
                     }
                 }
 
                 if (isNotInAlphabet) {
-                    writer.write(letter);
+                    writer.write((char) charCode);
                 }
+                System.out.print(String.valueOf((char) charCode));
             }
             writer.flush();
         }

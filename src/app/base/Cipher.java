@@ -9,7 +9,8 @@ import java.io.BufferedWriter;
  */
 public abstract class Cipher
 {
-    public Language currentLanguage;
+    public char[] alphabet;
+    public String key;
 
     public String name(){
         return this.getClass().getSimpleName();
@@ -22,5 +23,6 @@ public abstract class Cipher
     public abstract void hack(BufferedReader reader, BufferedWriter writer);
 
     public abstract String help();
-
 }
+
+

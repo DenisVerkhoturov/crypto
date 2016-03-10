@@ -1,13 +1,17 @@
 package controllers;
 
-import app.Manager;
-import app.base.Language;
+import app.Crypto;
+import app.base.Ciphers;
+import app.base.Languages;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,13 +23,19 @@ public class MainController implements Initializable
     @FXML
     private JFXComboBox<String> action;
     @FXML
-    private JFXComboBox<Language> language;
+    private JFXComboBox<Languages> language;
     @FXML
-    private JFXComboBox<String> algorithm;
+    private JFXComboBox<Ciphers> algorithm;
     @FXML
     private JFXTextField cipherKey;
+    @FXML
+    private JFXTextArea inputText;
+    @FXML
+    private JFXTextArea outputText;
+    @FXML
+    private JFXButton doMagic;
 
-    private Manager manager = new Manager();
+    private Crypto crypto = new Crypto();
 
     private ResourceBundle resourceBundle;
 
@@ -41,17 +51,36 @@ public class MainController implements Initializable
     {
         String[] actions = {"Зашифровать", "Расшифровать"};
         this.action.getItems().addAll(actions);
+        this.action.getSelectionModel().select("Зашифровать");
 
-        this.algorithm.getItems().addAll(manager.cipherManager().getResourceList());
+        this.algorithm.getItems().addAll(Ciphers.values());
+        this.algorithm.getSelectionModel().select(this.crypto.getCipher());
 
-        this.language.getItems().addAll(Language.values());
+        this.language.getItems().addAll(Languages.values());
+        this.language.getSelectionModel().select(this.crypto.getLanguage());
     }
 
     public void action(ActionEvent actionEvent)
-    {}
-
-    private void encrypt(ActionEvent actionEvent)
     {
+        this.crypto.getCipher().getInstance().key = this.cipherKey.getText();
+        BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new OutputStream()
+        {
+            @Override
+            public void write(int b) throws IOException
+            {
+                outputText.appendText(String.valueOf((char) b));
+            }
+        }));
 
+        switch (this.action.getSelectionModel().getSelectedItem())
+        {
+            case "Зашифровать":
+                this.crypto.encrypt(new BufferedReader(new InputStreamReader(new ByteArrayInputStream(this.inputText.getText().getBytes()))), output);
+                break;
+            case "Расшифровать":
+                break;
+            case "Взломать":
+                break;
+        }
     }
 }

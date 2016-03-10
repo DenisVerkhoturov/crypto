@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import java.net.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -39,18 +40,25 @@
           </children>
        </AnchorPane>
    </top>
-   <left>
-       <AnchorPane BorderPane.alignment="CENTER">
-          <children>
-              <JFXTextArea promptText="Исходный текст" scrollLeft="1.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-          </children>
-       </AnchorPane>
-   </left>
-   <right>
-       <AnchorPane BorderPane.alignment="CENTER">
-          <children>
-              <JFXTextArea promptText="Посе обработки" scrollLeft="1.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-          </children>
-       </AnchorPane>
-   </right>
+   <center>
+      <AnchorPane>
+         <children>
+            <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                   <AnchorPane BorderPane.alignment="CENTER">
+                     <children>
+                          <JFXTextArea fx:id="inputText" promptText="Исходный текст" scrollLeft="1.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                   </AnchorPane>
+                  <JFXButton buttonType="RAISED" ripplerFill="#405aa8" fx:id="doMagic"  onAction="#action" text="Do" />
+                  <AnchorPane>
+                     <children>
+                          <JFXTextArea fx:id="outputText" promptText="Посе обработки" scrollLeft="1.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
