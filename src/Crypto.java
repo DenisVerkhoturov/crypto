@@ -24,8 +24,8 @@ public class Crypto extends Application
         this.primaryStage.setTitle("Crypto");
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Crypto.class.getResource("fxml/main.fxml"));
-        loader.setResources(ResourceBundle.getBundle("bundles.Locale", new Locale("en")));
+        loader.setLocation(Crypto.class.getResource("scream/crypto/fxml/main.fxml"));
+        loader.setResources(ResourceBundle.getBundle("scream.crypto.bundles.Locale", new Locale("en")));
         this.rootLayout = loader.load();
 
         Scene scene = new Scene(this.rootLayout);

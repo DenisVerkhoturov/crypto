@@ -1,6 +1,6 @@
-package app.cipher;
+package scream.crypto.cipher;
 
-import app.base.Cipher;
+import scream.crypto.base.Cipher;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,6 +16,24 @@ import java.io.IOException;
  */
 public class Caesar extends Cipher
 {
+    private int intKey = 0;
+
+    @Override
+    public boolean validateKey()
+    {
+        boolean valid = false;
+        if (this.key != null) {
+            try {
+                this.intKey = Integer.parseInt(this.key);
+                valid = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid key '" + this.key + "' for algorithm Caesar");
+            }
+        }
+
+        return valid;
+    }
+
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)
     {
@@ -26,7 +44,10 @@ public class Caesar extends Cipher
                 boolean isNotInAlphabet = true;
                 for (int i = 0; i < this.alphabet.length; i++) {
                     if ((char) charCode == this.alphabet[i]) {
-                        writer.write(this.alphabet[i + Integer.parseInt(key) < this.alphabet.length ? i + Integer.parseInt(key) : (i + Integer.parseInt(key)) % this.alphabet.length]);
+                        int letterIndex = i + this.intKey;
+                        if (letterIndex > this.alphabet.length)
+                            letterIndex = letterIndex % this.alphabet.length;
+                        writer.write(this.alphabet[letterIndex]);
                         isNotInAlphabet = false;
                     }
                 }

@@ -1,6 +1,6 @@
-package app.cipher;
+package scream.crypto.cipher;
 
-import app.base.Cipher;
+import scream.crypto.base.Cipher;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,6 +12,12 @@ import java.io.BufferedWriter;
  */
 public class Vigenere extends Cipher
 {
+    @Override
+    public boolean validateKey()
+    {
+        return true;
+    }
+
     @Override
     public void encrypt(BufferedReader reader, BufferedWriter writer)
     {}

@@ -1,8 +1,10 @@
-package controllers;
+package scream.crypto.controllers;
 
-import app.Crypto;
-import app.base.Ciphers;
-import app.base.Languages;
+import com.jfoenix.validation.base.ValidatorBase;
+import javafx.scene.control.Tooltip;
+import scream.crypto.Crypto;
+import scream.crypto.base.Ciphers;
+import scream.crypto.base.Languages;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -28,6 +30,8 @@ public class MainController implements Initializable
     private JFXComboBox<Ciphers> algorithm;
     @FXML
     private JFXTextField cipherKey;
+    @FXML
+    private Tooltip errorMessage;
     @FXML
     private JFXTextArea inputText;
     @FXML

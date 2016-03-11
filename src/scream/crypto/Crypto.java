@@ -1,7 +1,7 @@
-package app;
+package scream.crypto;
 
-import app.base.Ciphers;
-import app.base.Languages;
+import scream.crypto.base.Ciphers;
+import scream.crypto.base.Languages;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
