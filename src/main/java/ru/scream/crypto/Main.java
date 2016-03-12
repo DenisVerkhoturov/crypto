@@ -1,3 +1,5 @@
+package ru.scream.crypto;
+
 import javafx.application.Application;
 
 /**

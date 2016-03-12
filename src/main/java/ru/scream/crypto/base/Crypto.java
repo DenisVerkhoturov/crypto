@@ -1,7 +1,7 @@
-package scream.crypto;
+package ru.scream.crypto.base;
 
-import scream.crypto.base.Ciphers;
-import scream.crypto.base.Languages;
+import ru.scream.crypto.base.Ciphers;
+import ru.scream.crypto.base.Languages;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

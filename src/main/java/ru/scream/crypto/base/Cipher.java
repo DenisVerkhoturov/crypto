@@ -1,4 +1,4 @@
-package scream.crypto.base;
+package ru.scream.crypto.base;
 
 
 import java.io.BufferedReader;

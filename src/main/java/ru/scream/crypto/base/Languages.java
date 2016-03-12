@@ -1,4 +1,4 @@
-package scream.crypto.base;
+package ru.scream.crypto.base;
 
 /**
  * Абстрактный класс язык, с наследниками которого работает внешняя среда.

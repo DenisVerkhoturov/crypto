@@ -1,10 +1,9 @@
-package scream.crypto.controllers;
+package ru.scream.crypto.controllers;
 
-import com.jfoenix.validation.base.ValidatorBase;
 import javafx.scene.control.Tooltip;
-import scream.crypto.Crypto;
-import scream.crypto.base.Ciphers;
-import scream.crypto.base.Languages;
+import ru.scream.crypto.base.Crypto;
+import ru.scream.crypto.base.Ciphers;
+import ru.scream.crypto.base.Languages;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
