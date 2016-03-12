@@ -46,7 +46,7 @@
                             <mainClass>ru.scream.crypto.Main</mainClass>
                             <packageName>ru.scream.crypto</packageName>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>true</classpathPrefix>
+                            <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
                     </archive>
                 </configuration>
