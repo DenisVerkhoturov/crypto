@@ -1,5 +1,7 @@
 package ru.scream.crypto.cipher;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
@@ -8,25 +10,25 @@ import static org.junit.Assert.*;
 public class CaesarTest
 {
 
-	@org.junit.Test
+	@Test
 	public void testValidateKey() throws Exception
 	{
 
 	}
 
-	@org.junit.Test
+	@Test
 	public void testEncrypt() throws Exception
 	{
 
 	}
 
-	@org.junit.Test
+	@Test
 	public void testDecrypt() throws Exception
 	{
 
 	}
 
-	@org.junit.Test
+	@Test
 	public void testHack() throws Exception
 	{
 
