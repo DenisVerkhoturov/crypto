@@ -1,9 +1,11 @@
 package ru.scream.crypto.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.control.Tooltip;
-import ru.scream.crypto.base.Crypto;
-import ru.scream.crypto.base.Ciphers;
-import ru.scream.crypto.base.Languages;
+import javafx.scene.paint.Paint;
+import ru.scream.crypto.base.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable
 {
     @FXML
-    private JFXComboBox<String> action;
+    private JFXComboBox<Actions> action;
     @FXML
     private JFXComboBox<Languages> language;
     @FXML
@@ -38,8 +40,6 @@ public class MainController implements Initializable
     @FXML
     private JFXButton doMagic;
 
-    private Crypto crypto = new Crypto();
-
     private ResourceBundle resourceBundle;
 
     @Override
@@ -52,31 +52,50 @@ public class MainController implements Initializable
 
     private void initListeners()
     {
-        String[] actions = {"Зашифровать", "Расшифровать"};
-        this.action.getItems().addAll(actions);
-        this.action.getSelectionModel().select("Зашифровать");
+        this.action.getItems().addAll(Actions.values());
+        this.action.getSelectionModel().select(Actions.ENCRYPT);
 
         this.algorithm.getItems().addAll(Ciphers.values());
-        this.algorithm.getSelectionModel().select(this.crypto.getCipher());
+        this.algorithm.getSelectionModel().select(Ciphers.CAESAR);
 
         this.language.getItems().addAll(Languages.values());
-        this.language.getSelectionModel().select(this.crypto.getLanguage());
+        this.language.getSelectionModel().select(Languages.EN);
+        this.language.setOnAction((event) ->
+            algorithm.getValue().getInstance().alphabet = language.getValue().alphabet());
+
+        this.cipherKey.focusedProperty().addListener((observable, oldValue, newValue) ->
+            {
+                if(!newValue) {
+                    algorithm.getValue().getInstance().candidateKey = cipherKey.getText();
+                    if (algorithm.getValue().getInstance().validateKey().isValid()) {
+                        cipherKey.setFocusColor(Paint.valueOf("#4059A9"));
+                        errorMessage.setText(algorithm.getValue().getInstance().validateKey().getMessage());
+                        doMagic.setDisable(false);
+                    } else {
+                        cipherKey.setFocusColor(Paint.valueOf("#dd1515"));
+                        errorMessage.setText(algorithm.getValue().getInstance().validateKey().getMessage());
+                        doMagic.setDisable(true);
+                    }
+                }
+            });
     }
 
     public void action(ActionEvent actionEvent)
     {
-        this.crypto.getCipher().getInstance().candidateKey = this.cipherKey.getText();
+        StringReader input = new StringReader(this.inputText.getText());
         StringWriter result = new StringWriter();
 
         switch (this.action.getSelectionModel().getSelectedItem())
         {
-            case "Зашифровать":
-                this.crypto.encrypt(new StringReader(this.inputText.getText()), result);
-                outputText.setText(result.toString());
+            case ENCRYPT:
+                algorithm.getValue().getInstance().encrypt(input, result);
+                this.outputText.setText(result.toString());
                 break;
-            case "Расшифровать":
+            case DECRYPT:
+                algorithm.getValue().getInstance().decrypt(input, result);
+                this.outputText.setText(result.toString());
                 break;
-            case "Взломать":
+            case HACK:
                 break;
         }
     }
