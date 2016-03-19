@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.Exchanger;
 
 /**
  * @author Verhoturov Denis - Leo.Scream.
@@ -38,42 +37,35 @@ public class MainController implements Initializable
     @FXML
     private JFXButton doMagic;
 
-    private ResourceBundle resourceBundle;
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.resourceBundle = resources;
+	    this.action.getItems().setAll(Actions.values());
+	    this.action.getSelectionModel().select(Actions.ENCRYPT);
 
-        this.initListeners();
-    }
+	    this.algorithm.getItems().setAll(Ciphers.values());
+	    this.algorithm.getSelectionModel().select(Ciphers.CAESAR);
+	    this.algorithm.setOnAction((event) ->
+			    cipherKey.setText(algorithm.getValue().getInstance().getKey()));
 
-    private void initListeners()
-    {
-        this.action.getItems().addAll(Actions.values());
-        this.action.getSelectionModel().select(Actions.ENCRYPT);
+	    this.language.getItems().setAll(Languages.values());
+	    this.language.getSelectionModel().select(Languages.EN);
+	    this.language.setOnAction((event) ->
+			    algorithm.getValue().getInstance().alphabet = language.getValue().alphabet());
 
-        this.algorithm.getItems().addAll(Ciphers.values());
-        this.algorithm.getSelectionModel().select(Ciphers.CAESAR);
-
-        this.language.getItems().addAll(Languages.values());
-        this.language.getSelectionModel().select(Languages.EN);
-        this.language.setOnAction((event) ->
-            algorithm.getValue().getInstance().alphabet = language.getValue().alphabet());
-
-        this.cipherKey.focusedProperty().addListener((observable, oldValue, newValue) ->
-            {
-                if(!newValue) {
-                    try {
-                        algorithm.getValue().getInstance().setKey(cipherKey.getText());
-                        cipherKey.setFocusColor(Paint.valueOf("#4059A9"));
-                        doMagic.setDisable(false);
-                    } catch (Exception e) {
-                        cipherKey.setFocusColor(Paint.valueOf("#dd1515"));
-                        doMagic.setDisable(true);
-                    }
-                }
-            });
+	    this.cipherKey.focusedProperty().addListener((observable, oldValue, newValue) ->
+	    {
+		    if(!newValue) {
+			    try {
+				    algorithm.getValue().getInstance().setKey(cipherKey.getText());
+				    cipherKey.setFocusColor(Paint.valueOf("#4059A9"));
+				    doMagic.setDisable(false);
+			    } catch (Exception e) {
+				    cipherKey.setFocusColor(Paint.valueOf("#dd1515"));
+				    doMagic.setDisable(true);
+			    }
+		    }
+	    });
     }
 
     public void action(ActionEvent actionEvent)

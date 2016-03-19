@@ -20,7 +20,7 @@ public class Caesar extends Cipher
 	/**
 	 * Ключ не может быть меньше нуля или больше размера используемого алфавита.
 	 */
-    private int key = 0;
+    private int intKey = 0;
 
     @Override
     public void setKey(String candidateKey) throws CipherKeyIsNotValid
@@ -30,10 +30,16 @@ public class Caesar extends Cipher
         if (candidate < 0 || candidate > this.alphabet.length)
 	        throw new CipherKeyIsNotValid();
 
-	    this.key = candidate;
+	    this.intKey = candidate;
     }
 
-    @Override
+	@Override
+	public String getKey()
+	{
+		return String.valueOf(this.intKey);
+	}
+
+	@Override
     public void encrypt(StringReader reader, StringWriter writer)
     {
         int charCode;
@@ -43,7 +49,7 @@ public class Caesar extends Cipher
                 boolean isNotInAlphabet = true;
                 for (int i = 0; i < this.alphabet.length; i++) {
                     if (Character.toLowerCase(charCode) == this.alphabet[i]) {
-                        int letterIndex = (i + this.key) % (this.alphabet.length + 1);
+                        int letterIndex = (i + this.intKey) % (this.alphabet.length + 1);
                         writer.write(this.alphabet[letterIndex]);
                         isNotInAlphabet = false;
                     }
@@ -69,7 +75,7 @@ public class Caesar extends Cipher
 			    boolean isNotInAlphabet = true;
 			    for (int i = 0; i < this.alphabet.length; i++) {
 				    if (Character.toLowerCase(charCode) == this.alphabet[i]) {
-					    int letterIndex = i - this.key;
+					    int letterIndex = i - this.intKey;
 					    writer.write(this.alphabet[letterIndex]);
 					    isNotInAlphabet = false;
 				    }

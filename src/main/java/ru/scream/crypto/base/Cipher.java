@@ -11,7 +11,14 @@ import java.io.StringWriter;
  */
 public abstract class Cipher
 {
+	private String key;
+
 	public char[] alphabet = Languages.EN.alphabet();
+
+	public String getKey()
+	{
+		return this.key;
+	}
 
 	public abstract void setKey(@NotNull String candidateKey) throws CipherKeyIsNotValid;
 

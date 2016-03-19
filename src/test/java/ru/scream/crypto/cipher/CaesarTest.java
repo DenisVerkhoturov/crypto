@@ -11,7 +11,16 @@ public class CaesarTest
 {
 	@Test
 	public void testValidateDefaultKey() throws Exception
-	{}
+	{
+		Caesar caesar = new Caesar();
+		String inputValue = caesar.getKey();
+
+		try {
+			caesar.setKey(inputValue);
+		} catch (Exception e) {
+			fail();
+		}
+	}
 
 	@Test
 	public void testValidateStringKey() throws Exception
