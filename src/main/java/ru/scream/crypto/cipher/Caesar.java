@@ -2,9 +2,9 @@ package ru.scream.crypto.cipher;
 
 import ru.scream.crypto.base.Cipher;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 /**
  * Шифр Цезаря
@@ -16,26 +16,28 @@ import java.io.IOException;
  */
 public class Caesar extends Cipher
 {
-    private int intKey = 0;
+    private int key = 0;
 
     @Override
-    public boolean validateKey()
+    public Validator validateKey()
     {
         boolean valid = false;
-        if (this.key != null) {
+        String message = "";
+
+        if (candidateKey != null) {
             try {
-                this.intKey = Integer.parseInt(this.key);
+                this.key = Integer.parseInt(candidateKey);
                 valid = true;
             } catch (NumberFormatException e) {
-                System.out.println("Invalid key '" + this.key + "' for algorithm Caesar");
+                message = "Invalid key '" + candidateKey + "' for algorithm Caesar. Use integer key.";
             }
         }
 
-        return valid;
+        return new Validator(valid, message);
     }
 
     @Override
-    public void encrypt(BufferedReader reader, BufferedWriter writer)
+    public void encrypt(StringReader reader, StringWriter writer)
     {
         int charCode;
 
@@ -44,7 +46,7 @@ public class Caesar extends Cipher
                 boolean isNotInAlphabet = true;
                 for (int i = 0; i < this.alphabet.length; i++) {
                     if ((char) charCode == this.alphabet[i]) {
-                        int letterIndex = i + this.intKey;
+                        int letterIndex = i + this.key;
                         if (letterIndex > this.alphabet.length)
                             letterIndex = letterIndex % this.alphabet.length;
                         writer.write(this.alphabet[letterIndex]);
@@ -65,10 +67,10 @@ public class Caesar extends Cipher
     }
 
     @Override
-    public void decrypt(BufferedReader reader, BufferedWriter writer)
+    public void decrypt(StringReader reader, StringWriter writer)
     {}
 
     @Override
-    public void hack(BufferedReader reader, BufferedWriter writer)
+    public void hack(StringReader reader, StringWriter writer)
     {}
 }

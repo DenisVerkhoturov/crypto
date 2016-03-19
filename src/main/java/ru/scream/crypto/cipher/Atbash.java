@@ -2,8 +2,8 @@ package ru.scream.crypto.cipher;
 
 import ru.scream.crypto.base.Cipher;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 /**
  * Шифр Атбаш
@@ -17,20 +17,20 @@ import java.io.BufferedWriter;
 public class Atbash extends Cipher
 {
     @Override
-    public boolean validateKey()
+    public Validator validateKey()
     {
-        return false;
+        return null;
     }
 
     @Override
-    public void encrypt(BufferedReader reader, BufferedWriter writer)
+    public void encrypt(StringReader reader, StringWriter writer)
     {}
 
     @Override
-    public void decrypt(BufferedReader reader, BufferedWriter writer)
+    public void decrypt(StringReader reader, StringWriter writer)
     {}
 
     @Override
-    public void hack(BufferedReader reader, BufferedWriter writer)
+    public void hack(StringReader reader, StringWriter writer)
     {}
 }

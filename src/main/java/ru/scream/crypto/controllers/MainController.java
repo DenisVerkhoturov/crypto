@@ -65,20 +65,14 @@ public class MainController implements Initializable
 
     public void action(ActionEvent actionEvent)
     {
-        this.crypto.getCipher().getInstance().key = this.cipherKey.getText();
-        BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new OutputStream()
-        {
-            @Override
-            public void write(int b) throws IOException
-            {
-                outputText.appendText(String.valueOf((char) b));
-            }
-        }));
+        this.crypto.getCipher().getInstance().candidateKey = this.cipherKey.getText();
+        StringWriter result = new StringWriter();
 
         switch (this.action.getSelectionModel().getSelectedItem())
         {
             case "Зашифровать":
-                this.crypto.encrypt(new BufferedReader(new InputStreamReader(new ByteArrayInputStream(this.inputText.getText().getBytes()))), output);
+                this.crypto.encrypt(new StringReader(this.inputText.getText()), result);
+                outputText.setText(result.toString());
                 break;
             case "Расшифровать":
                 break;

@@ -1,10 +1,7 @@
 package ru.scream.crypto.base;
 
-import ru.scream.crypto.base.Ciphers;
-import ru.scream.crypto.base.Languages;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 /**
  * Универсальный класс приложения, предоставляющий универсальные медоты шифрования по имени алгоритма.
@@ -30,7 +27,7 @@ public class Crypto
         return this.language;
     }
 
-    public void encrypt(BufferedReader reader, BufferedWriter writer)
+    public void encrypt(StringReader reader, StringWriter writer)
     {
         this.cipher.getInstance().alphabet = this.language.alphabet();
         this.cipher.getInstance().encrypt(reader, writer);

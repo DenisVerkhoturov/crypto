@@ -1,24 +1,55 @@
 package ru.scream.crypto.base;
 
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 /**
  * Абстрактный класс шифровальщик, с наследниками которого работает внешняя среда.
  */
 public abstract class Cipher
 {
-    public char[] alphabet;
-    public String key;
+	/**
+	 * Значение-кандидат для использования в качестве ключа.
+	 * Это значение открыто и может содержать любую строку,
+	 * поэтому не следует использовать это поле как ключ в алгоритмах.
+	 * В качестве ключа рекоммендуется использовать поле класса,
+	 * например private int key, которое каждый может получить,
+	 * но назначается оно только в классе реализации алгоритма в
+	 * функции validateKey.
+	 */
+	public String candidateKey = "";
 
-    public abstract boolean validateKey();
+	public char[] alphabet;
 
-    public abstract void encrypt(BufferedReader reader, BufferedWriter writer);
+	public abstract Validator validateKey();
 
-    public abstract void decrypt(BufferedReader reader, BufferedWriter writer);
+	public abstract void encrypt(StringReader reader, StringWriter writer);
 
-    public abstract void hack(BufferedReader reader, BufferedWriter writer);
+	public abstract void decrypt(StringReader reader, StringWriter writer);
+
+	public abstract void hack(StringReader reader, StringWriter writer);
+
+	public class Validator
+	{
+		private boolean valid;
+		private String message;
+
+		public Validator(boolean valid, String message)
+		{
+			this.valid = valid;
+			this.message = message;
+		}
+
+		public boolean isValid()
+		{
+			return this.valid;
+		}
+
+		public String getMessage()
+		{
+			return this.message;
+		}
+	}
 }
 
 
