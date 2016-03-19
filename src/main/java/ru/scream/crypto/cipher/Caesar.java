@@ -1,6 +1,7 @@
 package ru.scream.crypto.cipher;
 
 import ru.scream.crypto.base.Cipher;
+import ru.scream.crypto.base.exceptions.CipherKeyIsNotValid;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -16,32 +17,20 @@ import java.io.StringWriter;
  */
 public class Caesar extends Cipher
 {
+	/**
+	 * Ключ не может быть меньше нуля или больше размера используемого алфавита.
+	 */
     private int key = 0;
 
     @Override
-    public Validator validateKey()
+    public void setKey(String candidateKey) throws CipherKeyIsNotValid
     {
-        boolean valid = false;
-        String message = "";
+	    int candidate = Integer.parseInt(candidateKey);
 
-        if (candidateKey != null) {
-            try {
-                this.key = Integer.parseInt(candidateKey);
+        if (candidate < 0 || candidate > this.alphabet.length)
+	        throw new CipherKeyIsNotValid();
 
-	            if (this.key > this.alphabet.length) {
-		            message = "Key can't be bigger that alphabet length [" + this.alphabet.length + "]";
-	            } else if (this.key < 0) {
-		            message = "Key can't be negative";
-	            }
-            } catch (NumberFormatException e) {
-                message = "Invalid key '" + candidateKey + "' for algorithm Caesar. Use integer key.";
-            }
-        }
-
-	    if (message.equals(""))
-		    valid = true;
-
-        return new Validator(valid, message);
+	    this.key = candidate;
     }
 
     @Override

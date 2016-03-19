@@ -1,6 +1,7 @@
 package ru.scream.crypto.cipher;
 
 import ru.scream.crypto.base.Cipher;
+import ru.scream.crypto.base.exceptions.CipherKeyIsNotValid;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -12,13 +13,11 @@ import java.io.StringWriter;
  */
 public class Vigenere extends Cipher
 {
-    @Override
-    public Validator validateKey()
-    {
-        return null;
-    }
+	@Override
+	public void setKey(String candidateKey) throws CipherKeyIsNotValid
+	{}
 
-    @Override
+	@Override
     public void encrypt(StringReader reader, StringWriter writer)
     {}
 

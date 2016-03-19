@@ -1,8 +1,5 @@
 package ru.scream.crypto.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Paint;
 import ru.scream.crypto.base.*;
@@ -17,6 +14,7 @@ import javafx.fxml.Initializable;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Exchanger;
 
 /**
  * @author Verhoturov Denis - Leo.Scream.
@@ -66,14 +64,12 @@ public class MainController implements Initializable
         this.cipherKey.focusedProperty().addListener((observable, oldValue, newValue) ->
             {
                 if(!newValue) {
-                    algorithm.getValue().getInstance().candidateKey = cipherKey.getText();
-                    if (algorithm.getValue().getInstance().validateKey().isValid()) {
+                    try {
+                        algorithm.getValue().getInstance().setKey(cipherKey.getText());
                         cipherKey.setFocusColor(Paint.valueOf("#4059A9"));
-                        errorMessage.setText(algorithm.getValue().getInstance().validateKey().getMessage());
                         doMagic.setDisable(false);
-                    } else {
+                    } catch (Exception e) {
                         cipherKey.setFocusColor(Paint.valueOf("#dd1515"));
-                        errorMessage.setText(algorithm.getValue().getInstance().validateKey().getMessage());
                         doMagic.setDisable(true);
                     }
                 }
