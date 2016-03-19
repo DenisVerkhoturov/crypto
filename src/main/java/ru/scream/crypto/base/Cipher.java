@@ -19,7 +19,7 @@ public abstract class Cipher
 	 */
 	public String candidateKey = "";
 
-	public char[] alphabet;
+	public char[] alphabet = Languages.EN.alphabet();
 
 	public abstract Validator validateKey();
 
