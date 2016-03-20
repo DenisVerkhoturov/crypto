@@ -70,18 +70,15 @@ public class MainController implements Initializable
 
     public void action(ActionEvent actionEvent)
     {
-        StringReader input = new StringReader(this.inputText.getText());
-        StringWriter result = new StringWriter();
-
         switch (this.action.getSelectionModel().getSelectedItem())
         {
             case ENCRYPT:
-                algorithm.getValue().getInstance().encrypt(input, result);
-                this.outputText.setText(result.toString());
+	            String encrypted = algorithm.getValue().getInstance().encrypt(this.inputText.getText());
+                this.outputText.setText(encrypted);
                 break;
             case DECRYPT:
-                algorithm.getValue().getInstance().decrypt(input, result);
-                this.outputText.setText(result.toString());
+	            String decrypted = algorithm.getValue().getInstance().decrypt(this.inputText.getText());
+                this.outputText.setText(decrypted);
                 break;
             case HACK:
                 break;

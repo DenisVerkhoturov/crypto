@@ -3,10 +3,6 @@ package ru.scream.crypto.cipher;
 import ru.scream.crypto.base.Cipher;
 import ru.scream.crypto.base.exceptions.CipherKeyIsNotValid;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-
 /**
  * Шифр Цезаря
  *
@@ -24,7 +20,7 @@ public class Caesar extends Cipher
     {
 	    int candidate = Integer.parseInt(candidateKey);
 
-        if (candidate < 0 || candidate > this.alphabet.length)
+        if (candidate < 0 || candidate >= this.alphabet.length)
 	        throw new CipherKeyIsNotValid();
 
 	    this.intKey = candidate;
@@ -37,58 +33,32 @@ public class Caesar extends Cipher
 	}
 
 	@Override
-    public void encrypt(StringReader reader, StringWriter writer)
+    public String encrypt(String text)
     {
-	    int charCode;
+	    StringBuilder result = new StringBuilder();
+	    char alpha = this.alphabet[0];
 
-        try {
-            while ((charCode = reader.read()) != -1) {
-                boolean isNotInAlphabet = true;
-                for (int i = 0; i < this.alphabet.length; i++) {
-                    if (Character.toLowerCase(charCode) == this.alphabet[i]) {
-                        int letterIndex = (i + this.intKey) % (this.alphabet.length + 1);
-                        writer.write(this.alphabet[letterIndex]);
-                        isNotInAlphabet = false;
-                    }
-                }
-
-                if (isNotInAlphabet) {
-                    writer.write((char) charCode);
-                }
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+	    for (char letter : text.toCharArray()) {
+		    char encrypted = letter;
+		    if (Character.isLetter(letter)) {
+			    if (Character.isUpperCase(letter)) {
+				    encrypted = (char) (Character.toUpperCase(alpha) + (letter - Character.toUpperCase(alpha) + this.intKey) % (this.alphabet.length));
+			    } else {
+				    encrypted = (char) (alpha + (letter - alpha + this.intKey) % this.alphabet.length );
+			    }
+		    }
+		    result.append(encrypted);
+	    }
+	    return result.toString();
     }
 
     @Override
-    public void decrypt(StringReader reader, StringWriter writer)
+    public String decrypt(String text)
     {
-	    int charCode;
-
-	    try {
-		    while ((charCode = reader.read()) != -1) {
-			    boolean isNotInAlphabet = true;
-			    for (int i = 0; i < this.alphabet.length; i++) {
-				    if (Character.toLowerCase(charCode) == this.alphabet[i]) {
-					    int letterIndex
-							    = i > this.intKey
-							    ? i - this.intKey
-							    : i + this.alphabet.length + 1 - this.intKey;
-
-					    writer.write(this.alphabet[letterIndex]);
-					    isNotInAlphabet = false;
-				    }
-			    }
-
-			    if (isNotInAlphabet) {
-				    writer.write((char) charCode);
-			    }
-		    }
-	    }
-	    catch (IOException e) {
-		    e.printStackTrace();
-	    }
+	    int tpm = this.intKey;
+	    this.intKey = this.alphabet.length - this.intKey;
+	    String result = this.encrypt(text);
+	    this.intKey = tpm;
+	    return result;
     }
 }

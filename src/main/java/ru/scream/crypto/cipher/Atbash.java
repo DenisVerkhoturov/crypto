@@ -3,9 +3,6 @@ package ru.scream.crypto.cipher;
 import ru.scream.crypto.base.Cipher;
 import ru.scream.crypto.base.exceptions.CipherKeyIsNotValid;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-
 /**
  * Шифр Атбаш
  *
@@ -22,10 +19,14 @@ public class Atbash extends Cipher
     {}
 
     @Override
-    public void encrypt(StringReader reader, StringWriter writer)
-    {}
+    public String encrypt(String text)
+    {
+        return null;
+    }
 
     @Override
-    public void decrypt(StringReader reader, StringWriter writer)
-    {}
+    public String decrypt(String text)
+    {
+        return null;
+    }
 }
