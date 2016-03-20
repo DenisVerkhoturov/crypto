@@ -91,8 +91,4 @@ public class Caesar extends Cipher
 		    e.printStackTrace();
 	    }
     }
-
-    @Override
-    public void hack(StringReader reader, StringWriter writer)
-    {}
 }

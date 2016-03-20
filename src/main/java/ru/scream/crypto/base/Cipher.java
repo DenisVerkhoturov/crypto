@@ -25,8 +25,6 @@ public abstract class Cipher
 	public abstract void encrypt(StringReader reader, StringWriter writer);
 
 	public abstract void decrypt(StringReader reader, StringWriter writer);
-
-	public abstract void hack(StringReader reader, StringWriter writer);
 }
 
 

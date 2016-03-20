@@ -28,8 +28,4 @@ public class Atbash extends Cipher
     @Override
     public void decrypt(StringReader reader, StringWriter writer)
     {}
-
-    @Override
-    public void hack(StringReader reader, StringWriter writer)
-    {}
 }
