@@ -1,6 +1,7 @@
 package ru.scream.crypto.cipher;
 
 import org.junit.Test;
+import ru.scream.crypto.crypto.cipher.Caesar;
 
 import static org.junit.Assert.*;
 

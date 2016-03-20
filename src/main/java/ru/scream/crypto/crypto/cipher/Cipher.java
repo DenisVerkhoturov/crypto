@@ -1,7 +1,8 @@
-package ru.scream.crypto.base;
+package ru.scream.crypto.crypto.cipher;
 
 import com.sun.istack.internal.NotNull;
-import ru.scream.crypto.base.exceptions.CipherKeyIsNotValid;
+import ru.scream.crypto.crypto.Languages;
+import ru.scream.crypto.crypto.exception.CipherKeyIsNotValid;
 
 /**
  * Абстрактный класс шифровальщик, с наследниками которого работает внешняя среда.

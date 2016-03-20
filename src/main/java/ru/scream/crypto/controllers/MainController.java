@@ -2,7 +2,7 @@ package ru.scream.crypto.controllers;
 
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Paint;
-import ru.scream.crypto.base.*;
+import ru.scream.crypto.crypto.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -79,8 +78,6 @@ public class MainController implements Initializable
             case DECRYPT:
 	            String decrypted = algorithm.getValue().getInstance().decrypt(this.inputText.getText());
                 this.outputText.setText(decrypted);
-                break;
-            case HACK:
                 break;
         }
     }

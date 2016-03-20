@@ -1,7 +1,6 @@
-package ru.scream.crypto.cipher;
+package ru.scream.crypto.crypto.cipher;
 
-import ru.scream.crypto.base.Cipher;
-import ru.scream.crypto.base.exceptions.CipherKeyIsNotValid;
+import ru.scream.crypto.crypto.exception.CipherKeyIsNotValid;
 
 /**
  * Шифр Цезаря

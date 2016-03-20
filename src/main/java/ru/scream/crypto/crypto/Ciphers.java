@@ -1,8 +1,9 @@
-package ru.scream.crypto.base;
+package ru.scream.crypto.crypto;
 
-import ru.scream.crypto.cipher.Atbash;
-import ru.scream.crypto.cipher.Caesar;
-import ru.scream.crypto.cipher.Vigenere;
+import ru.scream.crypto.crypto.cipher.Atbash;
+import ru.scream.crypto.crypto.cipher.Caesar;
+import ru.scream.crypto.crypto.cipher.Cipher;
+import ru.scream.crypto.crypto.cipher.Vigenere;
 
 /**
  * @author Verhoturov Denis - Leo.Scream.
