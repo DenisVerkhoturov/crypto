@@ -2,6 +2,9 @@ package ru.scream.crypto.cipher;
 
 import org.junit.Test;
 
+import java.io.StringReader;
+import java.io.StringWriter;
+
 import static org.junit.Assert.*;
 
 /**
@@ -9,8 +12,11 @@ import static org.junit.Assert.*;
  */
 public class CaesarTest
 {
+	/**
+	 * Тесты метода установки ключа
+	 */
 	@Test
-	public void testValidateDefaultKey() throws Exception
+	public void testSetDefaultKey() throws Exception
 	{
 		Caesar caesar = new Caesar();
 		String inputValue = caesar.getKey();
@@ -23,7 +29,7 @@ public class CaesarTest
 	}
 
 	@Test
-	public void testValidateStringKey() throws Exception
+	public void testSetStringKey() throws Exception
 	{
 		Caesar caesar = new Caesar();
 		String inputValue = "key";
@@ -36,7 +42,7 @@ public class CaesarTest
 	}
 
 	@Test
-	public void testValidateNegativeIntKey() throws Exception
+	public void testSetNegativeIntKey() throws Exception
 	{
 		Caesar caesar = new Caesar();
 		String inputValue = "-3";
@@ -50,7 +56,7 @@ public class CaesarTest
 	}
 
 	@Test
-	public void testValidateBigIntKey() throws Exception
+	public void testSetBigIntKey() throws Exception
 	{
 		Caesar caesar = new Caesar();
 		String inputValue = "99";
@@ -63,7 +69,7 @@ public class CaesarTest
 	}
 
 	@Test
-	public void testValidateNormalIntKey() throws Exception
+	public void testSetNormalIntKey() throws Exception
 	{
 		Caesar caesar = new Caesar();
 		int alphabetLength = caesar.alphabet.length;
@@ -74,5 +80,75 @@ public class CaesarTest
 		} catch (Exception e) {
 			fail();
 		}
+	}
+
+	/**
+	 * Тесты метода установки ключа
+	 */
+	@Test
+	public void testGetKey() throws Exception
+	{
+		Caesar caesar = new Caesar();
+		String inputValue = "5";
+		String excpectedValue = inputValue;
+		caesar.setKey(inputValue);
+		String actualValue = caesar.getKey();
+
+		assertEquals(excpectedValue, actualValue);
+	}
+
+	/**
+	 * Тесты методов шифрования
+	 */
+	@Test
+	public void testEncryptWithZeroKey() throws Exception
+	{
+		Caesar caesar = new Caesar();
+		caesar.setKey("0");
+		StringReader inputValue = new StringReader("Some test text!");
+		String expectedValue = "some test text!";
+		StringWriter actualValue = new StringWriter();
+		caesar.encrypt(inputValue, actualValue);
+
+		assertEquals(expectedValue, actualValue.toString());
+	}
+
+	@Test
+	public void testEncryptWithMaxKey() throws Exception
+	{
+		Caesar caesar = new Caesar();
+		caesar.setKey(String.valueOf(caesar.alphabet.length));
+		StringReader inputValue = new StringReader("Some test text!");
+		String expectedValue = "rnld sdrs sdws!";
+		StringWriter actualValue = new StringWriter();
+		caesar.encrypt(inputValue, actualValue);
+
+		assertEquals(expectedValue, actualValue.toString());
+	}
+
+	@Test
+	public void testDecryptWithZeroKey() throws Exception
+	{
+		Caesar caesar = new Caesar();
+		caesar.setKey("0");
+		StringReader inputValue = new StringReader("Some test text!");
+		String expectedValue = "some test text!";
+		StringWriter actualValue = new StringWriter();
+		caesar.decrypt(inputValue, actualValue);
+
+		assertEquals(expectedValue, actualValue.toString());
+	}
+
+	@Test
+	public void testDecryptWithMaxKey() throws Exception
+	{
+		Caesar caesar = new Caesar();
+		caesar.setKey(String.valueOf(caesar.alphabet.length));
+		StringReader inputValue = new StringReader("rnld sdrs sdws!");
+		String expectedValue = "some test text!";
+		StringWriter actualValue = new StringWriter();
+		caesar.decrypt(inputValue, actualValue);
+
+		assertEquals(expectedValue, actualValue.toString());
 	}
 }

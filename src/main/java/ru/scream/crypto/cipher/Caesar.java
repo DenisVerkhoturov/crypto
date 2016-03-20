@@ -17,9 +17,6 @@ import java.io.StringWriter;
  */
 public class Caesar extends Cipher
 {
-	/**
-	 * Ключ не может быть меньше нуля или больше размера используемого алфавита.
-	 */
     private int intKey = 0;
 
     @Override
@@ -42,7 +39,7 @@ public class Caesar extends Cipher
 	@Override
     public void encrypt(StringReader reader, StringWriter writer)
     {
-        int charCode;
+	    int charCode;
 
         try {
             while ((charCode = reader.read()) != -1) {
@@ -75,7 +72,11 @@ public class Caesar extends Cipher
 			    boolean isNotInAlphabet = true;
 			    for (int i = 0; i < this.alphabet.length; i++) {
 				    if (Character.toLowerCase(charCode) == this.alphabet[i]) {
-					    int letterIndex = i - this.intKey;
+					    int letterIndex
+							    = i > this.intKey
+							    ? i - this.intKey
+							    : i + this.alphabet.length + 1 - this.intKey;
+
 					    writer.write(this.alphabet[letterIndex]);
 					    isNotInAlphabet = false;
 				    }
