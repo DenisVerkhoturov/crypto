@@ -17,12 +17,20 @@ public class Caesar extends Cipher
     @Override
     public void setKey(String candidateKey) throws CipherKeyIsNotValid
     {
-	    int candidate = Integer.parseInt(candidateKey);
+	    int candidate;
 
-        if (candidate < 0 || candidate >= this.alphabet.length)
-	        throw new CipherKeyIsNotValid();
+	    try {
+		    candidate = Integer.parseInt(candidateKey);
+	    } catch (NumberFormatException e) {
+		    throw new CipherKeyIsNotValid("Use an integer positive key");
+	    }
 
-	    this.intKey = candidate;
+        if (candidate < 0)
+	        throw new CipherKeyIsNotValid("Key can't to be negative");
+	    else if (candidate >= this.alphabet.length)
+		    throw new CipherKeyIsNotValid("Key can't to be greater than alphabet length");
+	    else
+	        this.intKey = candidate;
     }
 
 	@Override

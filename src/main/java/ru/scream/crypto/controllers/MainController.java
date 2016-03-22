@@ -60,8 +60,9 @@ public class MainController implements Initializable
 				    cipherKey.setFocusColor(Paint.valueOf("#4059A9"));
 				    doMagic.setDisable(false);
 			    } catch (Exception e) {
-				    cipherKey.setFocusColor(Paint.valueOf("#dd1515"));
 				    doMagic.setDisable(true);
+				    cipherKey.setFocusColor(Paint.valueOf("#dd1515"));
+				    errorMessage.setText(e.getMessage());
 			    }
 		    }
 	    });
